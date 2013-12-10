@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="nl" lang="nl">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <link href="style.css" rel="stylesheet" type="text/css">
+        <!-- i just put libraries & dependencies in the header -->
+        <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCmuZIosFVgtMRw9aKagGMWej9bQ23ky8M&sensor=false"></script>
+        <script type="text/javascript" src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+    </head>
+    <body>
+        <div id="sign-up-form" onload="initialise();">
+            <form id="sign-up-form" action="php/controllers/sign_up.php" method="post">
+                name: <input type="text" name="name"><br>
+                E-mail: <input type="text" name="email"><br>
+                Password: <input type="password" name="password"><br>
+                
+                address: <input type="text" name="user-address"><br>
+                address-check: <input type="text" name="geocode-address">
+                <button type="button" id="address-button">check address</button><br>
+                <div id="address-map"></div><br>
+                <input type="text" id="lonlat" style="visibility: hidden;"><br>
+                
+                <input type="submit" name="submit" style="display: none;">
+            </form>
+            <div id="sign-up-status"></div>
+        </div>
+    </body>
+    <footer>
+        
+        <script type="text/javascript" src="js/signup.js"></script>
+        
+    </footer>
+</html>

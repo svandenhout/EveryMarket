@@ -1,33 +1,11 @@
 <?php
-include_once "settings.php";
-
-/*
- * Initiates a mysqli object called DB, I use this class to
- * build different standard query's that i think i need for my 
- * current project.
- */
-class DB {    
+class Products {
     public function __construct() {
         $this->mysqli = new mysqli(DB_URL, DB_USERNAME, DB_PASSWORD, DB_NAME);
 
         if ($this->mysqli->connect_errno) {
             echo "Failed to connect to MySQL: " . $mysqli->connect_error;
         }
-    }
-    
-    // the user parameter is an array
-    // user = array(name => name, location => location.... etc
-    // requires name, location, email
-    public function addUser($user) {
-        $sql = 
-            "INSERT INTO users (name, location, email)
-            VALUES (
-                '" . $user["name"] . "', 
-                '" . $user["location"] . "', 
-                '" . $user["email"] . "'
-            )";
-        
-        $result = $this->dbQuery($sql);
     }
     
     // the product parameter is an array
@@ -44,54 +22,43 @@ class DB {
             )";
         
         $result = $this->dbQuery($sql);
+        
+        return $result;
     }
     
     // returns an array with all products
+    // all products have their location
     public function getAllProducts() {
-        $sql = "SELECT * FROM products";
-            
-        $result = $this->dbQuery($sql);
-        
-        $rows = array();
-        while($row = $result->fetch_array(MYSQLI_ASSOC)) {
-            array_push($rows, $row);
-        }
-        
-        return $rows;
-    }
-    
-    // returns array with all users
-    public function getAllUsers() {
-        $sql = "SELECT * FROM users";
-        
-        $result = $this->dbQuery($sql);
-        
-        $rows = array();
-        while($row = $result->fetch_array(MYSQLI_ASSOC)) {
-            array_push($rows, $row);
-        }
-        
-        return $rows;
-    }
-    
-    // returns the user array/object (wtf php!)
-    public function getUserById($userId) {
         $sql = 
-            "SELECT name, location, email
-            From users WHERE '" .$userId . "'";
+            "SELECT * FROM users RIGHT JOIN products
+            ON users.id = products.user_id";
             
-        $result = $this->dbQuery($sql);    
+        $result = $this->dbQuery($sql);
+        
+        $rows = array();
+        while($row = $result->fetch_array(MYSQLI_ASSOC)) {
+            array_push($rows, $row);
+        }
+        
+        return $rows;
     }
     
     // returns the product by id
-    public function getProductById($productId) {
+    // also returns the location
+    public function getProductById($product_id) {
+        $sql = 
+            "SELECT *
+            FROM products WHERE id ='" .$product_id . "'";
+            
+        $result = $this->dbQuery($sql);
+        $row = $result->fetch_array(MYSQLI_ASSOC);
         
+        return $row;
     }
     
     // needs userId parameter, will return an array with all
     // products affiliated with the userId
     public function getProductsByUserId($user_id) {
-        
         $sql =
             "SELECT user_id, name, description, image
             FROM products WHERE user_id = " . $user_id . "";
