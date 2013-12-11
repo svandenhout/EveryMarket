@@ -14,7 +14,8 @@ $(document).ready(function() {
         password = form.find("input[name='password']"),
         user_address = form.find("input[name='user-address']"),
         geocode_address = form.find("input[name='geocode-address']"),
-        location = form.find("input[name='location']"),
+        status = form.find("div[name='status']"),
+        location = form.find("input[name='lnglat']"),
         submit = form.find("input[name='submit']");
         
     
@@ -51,7 +52,6 @@ $(document).ready(function() {
         // Stop form from submitting normally
         event.preventDefault();
         
-        console.log(url);
         // Send the data using post
         var posting = $.post( 
             url, { 
@@ -64,9 +64,9 @@ $(document).ready(function() {
         
         // Put the results in a div
         posting.done(function(data) {
-            console.log("HALLO");
             console.log(data);
-            $( "#sign-up-status" ).innerHTML = data;
+            console.log($("#sign-up-status"));
+            status.html(data);
         });
     });
 });
