@@ -10,8 +10,8 @@
         <script type="text/javascript" src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
     </head>
     <body>
-        <div id="sign-up-form" onload="initialise();">
-            <form id="sign-up-form" action="php/controllers/sign_up.php" method="post">
+        <div onload="initialise();">
+            <form id="sign-up-form" action="/php/controllers/sign_up.php" method="post">
                 name: <input type="text" name="name"><br>
                 E-mail: <input type="text" name="email"><br>
                 Password: <input type="password" name="password"><br>
@@ -19,6 +19,8 @@
                 address: <input type="text" name="user-address"><br>
                 address-check: <input type="text" name="geocode-address">
                 <button type="button" id="address-button">check address</button><br>
+                
+                <h2>Is this where you live?</h2><br>
                 <div id="address-map"></div><br>
                 <input type="text" id="lonlat" style="visibility: hidden;"><br>
                 
