@@ -13,7 +13,7 @@ $(document).ready(function() {
         email = form.find("input[name='email']"),
         password = form.find("input[name='password']"),
         user_address = form.find("input[name='user-address']"),
-        geocode_address = form.find("input[name='geocode-address']"),
+        geocode_address = form.find("span[name='geocode-address']"),
         status = form.find("div[name='status']"),
         location = form.find("input[name='lnglat']"),
         submit = form.find("input[name='submit']");
@@ -31,7 +31,7 @@ $(document).ready(function() {
     $("#address-button").click(function() {
         geoCoder.geocode({ 'address': user_address.val()}, function(results, status) {
             myLatlng = results[0].geometry.location;
-            geocode_address.val(results[0].formatted_address);
+            geocode_address.html(results[0].formatted_address);
             location.val(results[0].geometry.location.toString());
             
             // show marker of current position
@@ -48,7 +48,7 @@ $(document).ready(function() {
         });
     });
     
-    $("#sign-up-form").submit(function(event) {
+    $(form).submit(function(event) {
         // Stop form from submitting normally
         event.preventDefault();
         
@@ -64,9 +64,12 @@ $(document).ready(function() {
         
         // Put the results in a div
         posting.done(function(data) {
-            console.log(data);
-            console.log($("#sign-up-status"));
             status.html(data);
+            if(data === "<p> User added </p>") {
+                window.location = "index.html";
+            }else {
+                console.log("WAAROM ZOU DIT OOK WERKEN");
+            }
         });
     });
 });

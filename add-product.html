@@ -5,27 +5,21 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
         <link href="style.css" rel="stylesheet" type="text/css">
+        
         <!-- i just put libraries & dependencies in the header -->
         <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCmuZIosFVgtMRw9aKagGMWej9bQ23ky8M&sensor=false"></script>
         <script type="text/javascript" src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
     </head>
     <body>
-        <form id="log-in-form" action="/php/controllers/log_in.php" method="post">
-            <input type="text" name="email">
-            <input type="password" name="password">
-            <input type="submit" value="log in" name="submit">
-            <div name="log-in-status"></div>
-            <a href="singup.html">sign up</a>
+        <form id="add-product-form" action="/php/controllers/add_product.php" method="post" enctype="multipart/form-data">
+            name: <input type="text" name="name"><br>
+            description: <input type="text" name="description"><br>
+            image: <input type="file" name="image"><br>
+            <input type="submit" name="submit"><input type="text" name="user_id" style="display: none;">
+            <div name="status"></div>
         </form>
-        
-        <div id="logged-in">
-            <p name="logged-in-as"></p>
-            <button name="logout">log out</button>
-            <a name="addProduct" href="add-product.html">add product</a>
-        </div>
-        
     </body>
     <footer>
-        <script type="text/javascript" src="js/login.js"></script>
+        <script type="text/javascript" src="js/add-product.js"></script>
     </footer>
 </html>

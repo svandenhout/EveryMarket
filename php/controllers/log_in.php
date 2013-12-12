@@ -1,14 +1,15 @@
 <?php
+include_once "../models/users.class.php";
+
 /*
  * this controller returns all the user info after an email & 
  * password check
  */
-$user = new User();
+$user = new Users();
 
-// add password & shit ... fuck...
-if($user->getUserByEmail($_Post["email"])) {
-    if(password_verify($_Post["password"], $user["password"])) {
-        echo json_encode($user);
+if($result = $user->getUserByMail($_POST["email"])) {
+    if(password_verify($_POST["password"], $result["password"])) {
+        echo json_encode($result);
     }else {
         echo "<p> wrong password </p>";
     }

@@ -1,4 +1,6 @@
 <?php
+include_once "settings.php";
+
 class Products {
     public function __construct() {
         $this->mysqli = new mysqli(DB_URL, DB_USERNAME, DB_PASSWORD, DB_NAME);
@@ -11,17 +13,18 @@ class Products {
     // the product parameter is an array
     // product = array(userid => userid, name => name.... etc
     // requires userid, name, description and an image
-    public function addProduct($product) {
+    public function addProduct($product, $fileName) {
         $sql =
             "INSERT INTO products (user_id, name, description, image)
             VALUES (
                 " . $product["user_id"] . ", 
                 '" . $product["name"] . "', 
                 '" . $product["description"] . "',
-                '" . $product["image"] . "'
+                '" . $fileName . "'
             )";
         
-        $result = $this->dbQuery($sql);
+        $result = $this->mysqli->query($sql) or 
+            trigger_error($this->mysqli->error."[$sql]");
         
         return $result;
     }
@@ -33,7 +36,8 @@ class Products {
             "SELECT * FROM users RIGHT JOIN products
             ON users.id = products.user_id";
             
-        $result = $this->dbQuery($sql);
+        $result = $this->mysqli->query($sql) or 
+            trigger_error($this->mysqli->error."[$sql]");
         
         $rows = array();
         while($row = $result->fetch_array(MYSQLI_ASSOC)) {
@@ -50,7 +54,9 @@ class Products {
             "SELECT *
             FROM products WHERE id ='" .$product_id . "'";
             
-        $result = $this->dbQuery($sql);
+        $result = $this->mysqli->query($sql) or 
+            trigger_error($this->mysqli->error."[$sql]");
+        
         $row = $result->fetch_array(MYSQLI_ASSOC);
         
         return $row;
@@ -63,7 +69,8 @@ class Products {
             "SELECT user_id, name, description, image
             FROM products WHERE user_id = " . $user_id . "";
         
-        $result = $this->dbQuery($sql);
+        $result = $this->mysqli->query($sql) or 
+            trigger_error($this->mysqli->error."[$sql]");
         
         $rows = array();
         while($row = $result->fetch_array(MYSQLI_ASSOC)) {

@@ -10,7 +10,7 @@ $result = $user->addUser($_POST);
 if($result == $user::EMAIL_IN_USE) {
     echo "<p> Email address already in use </p>";
 }else if(!$result){
-    echo "<p> Server Issues </p>";
+    echo "<p> database problem " . $result . " </p>";
 }else {
     echo "<p> User added </p>";
 }
