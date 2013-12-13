@@ -13,7 +13,6 @@ $(document).ready(function() {
     // can send the user_id with the product
     if(localStorage.user) {
         var user = jQuery.parseJSON(localStorage.user)
-        console.log(userId);
         userId.val(user.id);
     }else {
         status.html("you're not logged, log in if you want to upload a product");

@@ -14,18 +14,18 @@
         <!-- SIGN-UP-STUFF -->
         <div id="sign-up-div">
             <form id="sign-up-form" action="/php/controllers/sign_up.php" method="post">
-                name: <input type="text" name="name"><br>
-                E-mail: <input type="email" name="email"><br>
-                Password: <input type="password" name="password"><br>
+                <span>name: </span><input type="text" name="name"><br>
+                <span>E-mail: </span><input type="email" name="email"><br>
+                <span>Password: </span><input type="password" name="password"><br>
                 
-                address: <input type="text" name="user-address"><br>
-                address-check: <span name="geocode-address"></span>
+                <span>where do you live: </span><input type="text" name="user-address">
                 <button type="button" id="address-button">check address</button><br>
                 
-                <h2>Is this where you live?</h2><br>
-                <div id="address-map"></div><br>
+                <h2 class="geocoding">Is this where you live?</h2><br>
+                <span class="geocoding" name="geocode-address"></span>
+                <div class="geocoding" id="address-map"></div><br>
                 <input type="submit" name="submit" style="display: none;"><br>
-                <div name="status"></div><br>
+                <div class="geocoding" name="status"></div><br>
                 <input type="text" name="lnglat" style="visibility: hidden;">
             </form>
         </div>

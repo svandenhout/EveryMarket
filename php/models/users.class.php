@@ -6,7 +6,7 @@ include_once "settings.php";
  * build different standard query's that i think i need for my 
  * current project.
  */
-class Users {
+class User {
     const EMAIL_IN_USE = 0;
     
     public function __construct() {
@@ -42,6 +42,61 @@ class Users {
         
         // when email is in use i use 
         return $result;
+    }
+    
+    // well it updates the record of a user...
+    public function updateName($user) {
+        $sql = 
+            "UPDATE users
+            SET name='" . $user["name"] . "',
+            WHERE id='" . $user["id"] . "'";
+        
+        $result = $this->mysqli->query($sql) or 
+            trigger_error($this->mysqli->error."[$sql]");
+        
+        return $result
+    }
+    
+    public function updateEmail($user) {
+        $sql = 
+            "UPDATE users
+            SET email='" . $user["email"] . "',
+            WHERE id='" . $user["id"] . "'";
+        
+        $result = $this->mysqli->query($sql);
+        
+        if($this->mysqli->errno == 1062) {
+            return self::EMAIL_IN_USE;
+        }    
+            
+        return $result
+    }
+    
+    public function updateLocation($user) {
+        $sql = 
+            "UPDATE users
+            SET email='" . $user["location"] . "',
+            WHERE id='" . $user["id"] . "'";
+        
+        $result = $this->mysqli->query($sql) or 
+            trigger_error($this->mysqli->error."[$sql]");
+        
+        return $result
+    }
+    
+    // updates the password
+    public function updatePassword($user) {
+        $password = password_hash($user["password"], PASSWORD_DEFAULT );
+        
+        $sql = 
+            "UPDATE users
+            SET email='" . $user["password"] . "',
+            WHERE id='" . $user["id"] . "'";
+        
+        $result = $this->mysqli->query($sql) or 
+            trigger_error($this->mysqli->error."[$sql]");
+        
+        return $result
     }
     
     // returns array with all users
@@ -91,4 +146,7 @@ class Users {
         return $result;
     }
 }
+
+// init the class 
+$user = new User();
 ?>

@@ -1,5 +1,8 @@
 $(document).ready(function() {
     
+    // hide all of the geocoding until user presses the address button
+    $(".geocoding").css("visibility", "hidden");
+    
     // TODO: i should just treat these like member vars next time
     var geoCoder = new google.maps.Geocoder();
     
@@ -44,8 +47,10 @@ $(document).ready(function() {
             // change center and zoom in on the user address
             map.panTo(myLatlng);
             map.setZoom(12);
+            $(".geocoding").css("visibility", "visible");
             submit.show();
         });
+        
     });
     
     $(form).submit(function(event) {

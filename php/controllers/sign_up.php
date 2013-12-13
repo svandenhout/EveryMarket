@@ -4,7 +4,6 @@ include_once "../models/users.class.php";
  * Sign in controller, will return paragraphs with a status message
  */
 
-$user = new Users();
 $result = $user->addUser($_POST);
     
 if($result == $user::EMAIL_IN_USE) {

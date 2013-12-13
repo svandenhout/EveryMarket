@@ -12,9 +12,9 @@
     </head>
     <body>
         <form id="add-product-form" action="/php/controllers/add_product.php" method="post" enctype="multipart/form-data">
-            name: <input type="text" name="name"><br>
-            description: <input type="text" name="description"><br>
-            image: <input type="file" name="image"><br>
+            <span>name: </span><input type="text" name="name"><br>
+            <span>description: </span><input type="text" name="description"><br>
+            <span>image: </span><input type="file" name="image"><br>
             <input type="submit" name="submit"><input type="text" name="user_id" style="display: none;">
             <div name="status"></div>
         </form>

@@ -12,3 +12,7 @@ body {
     width: 300px;
     height: 230px;
 }
+
+p, paragraph, button, input {
+    display: inline;
+}

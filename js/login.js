@@ -69,7 +69,7 @@ $(document).ready(function() {
         userObject = jQuery.parseJSON(localStorage.user);
         loggedInDiv.show();
         loginForm.hide();
-        loggedinas.html("logged in as " + userObject.name);
+        loggedinas.html("logged in as " + "<a href='about-me.html'>" + userObject.name + "</a>");
     }
     
     

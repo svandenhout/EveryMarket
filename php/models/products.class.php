@@ -87,4 +87,7 @@ class Products {
         return $result;
     }
 }
+
+// init the class 
+$product = new Product();
 ?>
