@@ -23,8 +23,7 @@ class Products {
                 '" . $fileName . "'
             )";
         
-        $result = $this->mysqli->query($sql) or 
-            trigger_error($this->mysqli->error."[$sql]");
+       dbQuery($sql);
         
         return $result;
     }
@@ -36,8 +35,7 @@ class Products {
             "SELECT * FROM users RIGHT JOIN products
             ON users.id = products.user_id";
             
-        $result = $this->mysqli->query($sql) or 
-            trigger_error($this->mysqli->error."[$sql]");
+        dbQuery($sql);
         
         $rows = array();
         while($row = $result->fetch_array(MYSQLI_ASSOC)) {
@@ -54,8 +52,7 @@ class Products {
             "SELECT *
             FROM products WHERE id ='" .$product_id . "'";
             
-        $result = $this->mysqli->query($sql) or 
-            trigger_error($this->mysqli->error."[$sql]");
+        dbQuery($sql);
         
         $row = $result->fetch_array(MYSQLI_ASSOC);
         
@@ -69,8 +66,7 @@ class Products {
             "SELECT user_id, name, description, image
             FROM products WHERE user_id = " . $user_id . "";
         
-        $result = $this->mysqli->query($sql) or 
-            trigger_error($this->mysqli->error."[$sql]");
+        dbQuery($sql);
         
         $rows = array();
         while($row = $result->fetch_array(MYSQLI_ASSOC)) {

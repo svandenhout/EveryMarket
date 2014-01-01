@@ -1,10 +1,11 @@
 <?php
-include_once "../models/products.class.php";
+include_once "../models/product.class.php";
 
 /*
  * this controller returns all the user info after an email & 
  * password check
  */
+
 $uploads_dir = $home_dir . '/images';
 if ($_FILES["image"]["error"] == UPLOAD_ERR_OK) {
     $tmp_name = $_FILES["image"]["tmp_name"];

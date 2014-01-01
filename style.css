@@ -13,6 +13,6 @@ body {
     height: 230px;
 }
 
-p, paragraph, button, input {
+.dunno {
     display: inline;
 }

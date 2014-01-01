@@ -10,22 +10,17 @@
         <script type="text/javascript" src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
     </head>
     <body>
-        <form id="log-in-form" action="/php/controllers/log_in.php" method="post">
-            <input type="text" name="email">
-            <input type="password" name="password">
-            <input type="submit" value="log in" name="submit">
-            <div name="log-in-status"></div>
-            <a href="singup.html">sign up</a>
-        </form>
+        <div id="fb-root"></div>
+        <fb:login-button show-faces="true" width="200" max-rows="1"></fb:login-button>
         
-        <div id="logged-in">
-            <p name="logged-in-as"></p>
-            <button name="logout">log out</button>
-            <a name="addProduct" href="add-product.html">add product</a>
+        <div style="display: none;" class="logged-in">
+            <a  class="location-link" href="change-location.html"></a>
+            <a class="addProduct" href="add-product.html">add product</a>
         </div>
         
     </body>
     <footer>
-        <script type="text/javascript" src="js/login.js"></script>
+        <script type="text/javascript" src="js/User.js"></script>
+        <script type="text/javascript" src="js/fb-login.js"></script>
     </footer>
 </html>
