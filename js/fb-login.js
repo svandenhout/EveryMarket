@@ -48,11 +48,13 @@ $(window).ready(function() {
     function doUser(response) {
         user = new User(response);
         user.checkDbForUser(function(response) {
+            console.log(response);
             if(response) {
                 // retrieved the user from the database
                 sessionStorage.setItem("user", JSON.stringify(user));
                 $(".logged-in").show();
                 $(".location-link").html(user.address);
+                buildCatalog();
             }else {
                 sessionStorage.setItem("user", JSON.stringify(user));
                 // post the new user to the database

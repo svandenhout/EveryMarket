@@ -7,7 +7,7 @@ include_once "../models/user.class.php";
 // returns duplicate entry if the user is allready in the database
 $result = $user->checkUser($_POST);
 
-if($result == user::DUPLICATE_ENTRY) {
-    print("duplicate entry");
+if($result == "duplicate entry") {
+    print($result);
 }
 ?>

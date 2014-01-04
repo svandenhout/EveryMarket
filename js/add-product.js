@@ -11,8 +11,9 @@ $(document).ready(function() {
     
     // retrieve the user from localstorage so we 
     // can send the user_id with the product
-    if(localStorage.user) {
-        var user = jQuery.parseJSON(localStorage.user)
+    if(sessionStorage.getItem("user")) {
+        var user = JSON.parse(sessionStorage.getItem("user"));
+        console.log(user.id);
         userId.val(user.id);
     }else {
         status.html("you're not logged, log in if you want to upload a product");

@@ -1,7 +1,7 @@
 <?php
 include_once "settings.php";
 
-class Products {
+class Product {
     public function __construct() {
         $this->mysqli = new mysqli(DB_URL, DB_USERNAME, DB_PASSWORD, DB_NAME);
 
@@ -23,7 +23,7 @@ class Products {
                 '" . $fileName . "'
             )";
         
-       dbQuery($sql);
+        $result = $this->dbQuery($sql);
         
         return $result;
     }
@@ -33,9 +33,47 @@ class Products {
     public function getAllProducts() {
         $sql = 
             "SELECT * FROM users RIGHT JOIN products
-            ON users.id = products.user_id";
+            ON users.fb_id = products.user_id";
             
-        dbQuery($sql);
+        $result = $this->dbQuery($sql);
+        
+        $rows = array();
+        while($row = $result->fetch_array(MYSQLI_ASSOC)) {
+            array_push($rows, $row);
+        }
+        
+        return $rows;
+    }
+    
+    // lat 0.25 should be ~25 km 
+    // lng 0.4 should also be ~25km 
+    // very rough calculations based on a 51 degree lat
+    public function getAllProductsForLocation($location, $kilometers) {
+        // TODO this is not the right way to calculate latlng to km. The 
+        // margin for error is HUGE, 25 km could be like 30 km
+        // (this will not work as expected in places like antartica
+        // because the earth is actually round)
+        $lat_degrees = $kilometers * 0.01;
+        $lng_degrees = $kilometers * 0.016;
+        $min_lat = $location["lat"] - $lat_degrees;
+        $max_lat = $location["lat"] + $lat_degrees;
+        $min_lng = $location["lng"] - $lng_degrees;
+        $max_lng = $location["lng"] + $lng_degrees;
+        
+        $sql = 
+            "SELECT
+                users.fb_id,
+                users.latLng,
+                users.name AS user_name,
+                products.name, 
+                products.description, 
+                products.image 
+            FROM users JOIN products 
+            ON users.fb_id = products.user_id
+            WHERE users.lat < " . $max_lat . " AND users.lat > " . $min_lat . "
+            AND users.lng < " . $max_lng . " AND users.lng > " . $min_lng;
+        
+        $result = $this->dbQuery($sql);
         
         $rows = array();
         while($row = $result->fetch_array(MYSQLI_ASSOC)) {
@@ -52,7 +90,7 @@ class Products {
             "SELECT *
             FROM products WHERE id ='" .$product_id . "'";
             
-        dbQuery($sql);
+        $result = $this->dbQuery($sql);
         
         $row = $result->fetch_array(MYSQLI_ASSOC);
         
@@ -66,7 +104,7 @@ class Products {
             "SELECT user_id, name, description, image
             FROM products WHERE user_id = " . $user_id . "";
         
-        dbQuery($sql);
+        $result = $this->dbQuery($sql);
         
         $rows = array();
         while($row = $result->fetch_array(MYSQLI_ASSOC)) {

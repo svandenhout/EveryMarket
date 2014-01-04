@@ -1,5 +1,6 @@
 /*
  * all of the location based script for the change location page
+ * ideally i would have an ajax based address preview in the form
  */
 $(document).ready(function() {
     // hide all of the geocoding until user presses the check address button
@@ -19,7 +20,6 @@ $(document).ready(function() {
     // there should allways be a user in the session storage
     if(sessionStorage.getItem("user")) {
         user = new User(JSON.parse(sessionStorage.getItem("user")));
-        
     }
     
     // get elements

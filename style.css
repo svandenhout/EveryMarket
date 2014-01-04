@@ -13,6 +13,30 @@ body {
     height: 230px;
 }
 
-.dunno {
+.catalog {
+    margin: 30px 0 0 0;
+}
+
+.panel {
+    width: 40%;
+    height: 100px;
+    border: solid;
+    border-width:thin;
+    border-color: #777;
+    background-color: #DDD;
+}
+
+.panel:hover {
+    background-color: transparent;
+}
+
+.panel p {
+    position: relative;
+    float: left;
+    padding: 0 20px 0 20px;
     display: inline;
+}
+
+.panel img {
+    height: 100%;;
 }

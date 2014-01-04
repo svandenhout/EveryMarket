@@ -10,7 +10,7 @@ include_once "settings.php";
  * bot
  */
 class User {
-    const DUPLICATE_ENTRY = 0;
+    // const DUPLICATE_ENTRY = 0;
     
     public function __construct() {
         $this->mysqli = new mysqli(DB_URL, DB_USERNAME, DB_PASSWORD, DB_NAME);
@@ -32,12 +32,6 @@ class User {
         
         $result = $this->dbQuery($sql);
         
-        // not very neat but i guess it works
-        if($this->mysqli->errno == 1062) {
-            return $this::DUPLICATE_ENTRY;
-        }
-        
-        // when email is in use i use 
         return $result;
     }
 
@@ -47,17 +41,19 @@ class User {
             "SELECT * FROM users 
             WHERE fb_id='" . $user["id"] . "'";
 
-        $this->dbQuery($sql);
+        $result = $this->dbQuery($sql);
         
-        if($this->mysqli->errno == 1062) {
-            return $this::DUPLICATE_ENTRY;
+        if($result->num_rows > 0) {
+            return "duplicate entry";
         }
     }
     
     public function updateLocation($user) {
         $sql = 
             "UPDATE users
-            SET latLng='" . $user["latLng"] . "', 
+            SET latLng='" . $user["latLng"] . "',
+                lat='" . $user["lat"] . "',
+                lng='" . $user["lng"] . "',
                 address='" . $user["address"] . "'
             WHERE fb_id='" . $user["id"] . "'";
         

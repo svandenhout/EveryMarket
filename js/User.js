@@ -10,15 +10,17 @@
 function User(user) {
     // if the user object contains fbUser it's an old isntance
     // of this object
-    if(user.fbUser) {
+    if(user.fbUser !== undefined) {
+        console.log("setting old user")
         // the user object is an old instance of user
         this.setOldUser(user);
     }else {
+        console.log("setting new user")
         this.fbUser = user;
     }
 }
 
-// function takes an incomplete instance of the User and sets the 
+// function takes an incomplete instance of the User and sets the
 // values to the current one, incomplete is mostly only name, 
 // id & fbUser object
 User.prototype.setOldUser = function(user) {
@@ -45,25 +47,25 @@ User.prototype.setLocation = function(latLng, formattedAddress) {
 
 // the checkUser method checks the state of the method
 // the callback response will be true when a user is allready
-// in the database. If the callback response is true the user 
+// in the database. If the callback response is true the user
 // object will inherit all properties
 User.prototype.checkDbForUser = function(callback) {
     var that = this;
+    
     this.checkDatabase(function(result) {
+        console.log(result)
+        // var res = JSON.parse(result);
         if(result != "duplicate entry") {
-            console.log(result);
             // new user
             that.name = that.fbUser.name;
             that.id = that.fbUser.id;
             
-            // true means it's in the database allready
             callback(false);
         }else {
             that.getUserFromDb(function() { 
-                // console.log(this.address)
+                // the user has been retrieved from the database
                 callback(true);
-            });    
-                                  
+            });                         
         }
     });
 }
@@ -74,7 +76,7 @@ User.prototype.checkDatabase = function(callback) {
     var url = "../php/controllers/check_user.php";
     var posting = $.post(url, {id: this.fbUser.id});
     
-    // i post the that in the callback to make sure i can 
+    // i post the that in the callback to make sure i can
     // continue using the User object
     posting.done(function(result) {
         callback(result);
@@ -93,16 +95,19 @@ User.prototype.getUserFromDb = function(callback) {
         that.name = res.name;
         that.id = res.fb_id;
         that.latLng = res.latlng;
-        that.address = res.address;
+        that.address = res.address; 
         callback();
     });
 }
 
 User.prototype.updateLocation = function(callback) {
     var url = "../php/controllers/update_location.php";
+    console.log(this.latLng);
     
     var location = {
         latLng: JSON.stringify(this.latLng),
+        lat: this.latLng.nb,
+        lng: this.latLng.ob,
         address: this.address,
         id: this.id
     };
@@ -112,7 +117,6 @@ User.prototype.updateLocation = function(callback) {
     posting.done(function(result) {
         // should be a message
         callback();
-        console.log(result);
     });
 }
 
@@ -130,6 +134,5 @@ User.prototype.postUserToDb = function(callback) {
     
     posting.done(function(result) {
         callback();
-        console.log(result);
     });
 }
