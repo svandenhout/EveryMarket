@@ -55,6 +55,10 @@ $(window).ready(function() {
                 $(".logged-in").show();
                 $(".location-link").html(user.address);
                 buildCatalog();
+                
+                // chat functionality is too big for the scope
+                // of this project
+                // facebookChat(user.id);
             }else {
                 sessionStorage.setItem("user", JSON.stringify(user));
                 // post the new user to the database
@@ -63,6 +67,24 @@ $(window).ready(function() {
                 });
             }         
         });
+    }
+  
+    function facebookChat(sender) {
+        console.log(sender);
+        var receiver = "100007437187321"
+        // test message
+        var message = 
+            "<message from='-" + sender + "@chat.facebook.com " +
+                "to='-" + receiver + "@chat.facebook.com'>" +
+                "<body>HALLO IK BEN STEVEN</body>" +
+            "</message>";
+        
+        var posting = $.post("../php/facebook/fb_chat.php", {id: sender, message: message})
+        
+        posting.done(function(response) {
+            console.log("HALLO");
+            console.log(response);
+        })
     }
     
 });
