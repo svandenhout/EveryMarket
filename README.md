@@ -1,8 +1,8 @@
 BoodSchappenRuilApp
 ===================
 
-An application used to query ingredients in the neigbourhood,
-a user can register and put his food online for others to see. 
+An application to query for ingredients in the neigbourhood,
+a user can register and put his ingredients online for others to see. 
 You will find the ingredients you don't allways have but sometimes 
 need for a dish. Ingredients like flour, sugar, herbs and vegetables.
 
