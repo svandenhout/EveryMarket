@@ -36,7 +36,7 @@ $(window).ready(function() {
         ref.parentNode.insertBefore(js, ref);
     }(document));
 
-    // Onlogin is called when a facebook user is logged in
+    // nlogin is called when a facebook user is logged in
     // onlogin should be called every time index is opened
     function onLogin() {
         FB.api('/me', function (response) {
@@ -48,16 +48,25 @@ $(window).ready(function() {
     function doUser(response) {
         user = new User(response);
         user.checkDbForUser(function(response) {
-            console.log(response);
             if(response) {
                 // retrieved the user from the database
                 sessionStorage.setItem("user", JSON.stringify(user));
                 $(".logged-in").show();
                 $(".location-link").html(user.address);
-                buildCatalog();
                 
-                // chat functionality is too big for the scope
-                // of this project
+                console.log(window.location.pathname);
+                if(
+                    window.location.pathname === "/" || 
+                    window.location.pathname === "/index.html"
+                ) {
+                    buildCatalog();
+                }
+                
+                if(window.location.pathname === "/product.html") {
+                    buildDetail();
+                }
+                
+                // chat functionality is too big for the scope 
                 // facebookChat(user.id);
             }else {
                 sessionStorage.setItem("user", JSON.stringify(user));
@@ -68,23 +77,4 @@ $(window).ready(function() {
             }         
         });
     }
-  
-    function facebookChat(sender) {
-        console.log(sender);
-        var receiver = "100007437187321"
-        // test message
-        var message = 
-            "<message from='-" + sender + "@chat.facebook.com " +
-                "to='-" + receiver + "@chat.facebook.com'>" +
-                "<body>HALLO IK BEN STEVEN</body>" +
-            "</message>";
-        
-        var posting = $.post("../php/facebook/fb_chat.php", {id: sender, message: message})
-        
-        posting.done(function(response) {
-            console.log("HALLO");
-            console.log(response);
-        })
-    }
-    
 });

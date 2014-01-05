@@ -25,20 +25,16 @@ problems
 
 sollutions
 - facebook chat api (seems like the best possibility) 
-! the facebook chat api is only usable by using/ building a chatserver
-! which is very bad for the project scope 
-- require facebook login (will change the system quite a bit)
-! is has that now...
+! the facebook chat api is only usable by using/ building a chatserver which is very bad for the project scope. I will use the api to send a message to a user.
+
+- require facebook login (will change the system quite a bit) !done
 
 - the most usable sollution will probably be let the seller select a timeframe
-when users can visit to buy 
+when users can visit to buy ! not using this anymore, might be good but very hard to design
 
-
-extras (i will not do these)
+extras (most likely won't build)
+- intergrate the facebook messages into the app (might do later)
 - intergrate payment & shipping options
-
-comments
-- i'm such an idiot for making 2 models before everything was thought out....
 
 Database structure
 ------------------

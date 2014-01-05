@@ -18,6 +18,7 @@ body {
 }
 
 .panel {
+    display: block;
     width: 40%;
     height: 100px;
     border: solid;
@@ -39,4 +40,8 @@ body {
 
 .panel img {
     height: 100%;;
+}
+
+.detail img {
+    height: 250px;
 }
