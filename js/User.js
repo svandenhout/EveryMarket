@@ -11,11 +11,9 @@ function User(user) {
     // if the user object contains fbUser it's an old isntance
     // of this object
     if(user.fbUser !== undefined) {
-        console.log("setting old user")
         // the user object is an old instance of user
         this.setOldUser(user);
     }else {
-        console.log("setting new user")
         this.fbUser = user;
     }
 }
@@ -53,7 +51,6 @@ User.prototype.checkDbForUser = function(callback) {
     var that = this;
     
     this.checkDatabase(function(result) {
-        console.log(result)
         // var res = JSON.parse(result);
         if(result != "duplicate entry") {
             // new user
@@ -102,7 +99,6 @@ User.prototype.getUserFromDb = function(callback) {
 
 User.prototype.updateLocation = function(callback) {
     var url = "../php/controllers/update_location.php";
-    console.log(this.latLng);
     
     var location = {
         latLng: JSON.stringify(this.latLng),

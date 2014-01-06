@@ -95,6 +95,7 @@ class Product {
                 users.latLng,
                 users.address,
                 users.name AS user_name,
+                products.id,
                 products.name, 
                 products.description, 
                 products.image
@@ -123,6 +124,17 @@ class Product {
         }
         
         return $rows;
+    }
+    
+    public function deleteProductById($product_id) {
+        $product_id = $product_id["id"];
+        $sql = 
+            "DELETE FROM products
+            WHERE id=" . $product_id;
+        
+        $result = $this->dbQuery($sql);
+        
+        print($result);
     }
     
     private function dbQuery($sql) {

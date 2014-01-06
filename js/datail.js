@@ -1,5 +1,5 @@
 function buildDetail() {
-    var user = new User(sessionStorage.getItem("user"));
+    var user = JSON.parse(sessionStorage.getItem("user"));
     
     var id = getParameter("id");
     if(id) {
@@ -13,19 +13,39 @@ function buildDetail() {
             $(".address");
             $(".address-map");
             
+            console.log(response);
+            // checks wether the product is owned by the current user
+            // when owned the user can delete the product
+            if(user.id === response.fb_id) {
+                var deleteEntry = $(".delete-entry");
+                deleteEntry.show();
+                deleteEntry.click(function() {
+                    var posting = $.post(
+                        "../php/controllers/delete_product.php",
+                        {id: response.id}     
+                    );
+                          
+                    posting.done(function(response) { 
+                        console.log(response);
+                        window.location = "/index.html";
+                    });
+                });
+            }
+            
             var messageUser = $(".message-user")
-            // console.log(document.URL);
+
             messageUser.click(function() {
                 FB.ui({
                     method: "send",
                     name: response.name,
                     to: response.fb_id,
-                    link: "www.google.nl"  
+                    // facebook refuses the local url
+                    link: document.URL
+                    // link: "www.google.nl"
                 });
             });
             
             FB.api(response.fb_id, function(response) {
-                console.log(response);
                 var fbLink = $(".user");
                 fbLink.html(response.first_name + " " + response.last_name);
                 fbLink.attr("href", response.link);

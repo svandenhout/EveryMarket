@@ -20,6 +20,9 @@ $(window).ready(function() {
                 FB.login();
             }
         });
+        
+        // handles user logout
+        FB.Event.subscribe("auth.logout", function() {window.location.reload()});
     };
 
     // Load the SDK asynchronously
@@ -54,7 +57,6 @@ $(window).ready(function() {
                 $(".logged-in").show();
                 $(".location-link").html(user.address);
                 
-                console.log(window.location.pathname);
                 if(
                     window.location.pathname === "/" || 
                     window.location.pathname === "/index.html"

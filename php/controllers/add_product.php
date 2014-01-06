@@ -16,11 +16,9 @@ if ($_FILES["image"]["error"] == UPLOAD_ERR_OK) {
 $result = $product->addProduct($_POST, $_FILES["image"]["name"]);
 
 if(!$result){
-    echo "<p> database problem " . $result . " </p>";
+    print("<p> database problem " . $result . " </p>");
 }else {
-    $url = $home_dir . "/index.html";
-    echo "<p> Product added </p>";
-    
+    print("<p> Product added </p>");
+    print("<script>window.location = '/index.html'</script>");
 }
-
 ?>

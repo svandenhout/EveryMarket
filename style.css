@@ -1,11 +1,5 @@
-html {
-    margin: 0;
-    padding: 0;
-}
-
 body {
-    margin: 0;
-    padding: 0;
+    font-family: sans-serif;
 }
 
 #address-map {
@@ -13,33 +7,79 @@ body {
     height: 230px;
 }
 
+#big-map {
+    position: absolute;
+    z-index: -1;
+    height: 100%;
+    width: 100%;
+}
+
+.description {
+    width: 350px;
+    height 250px;
+}
+
+.login-box {
+    position: absolute;
+    top: 0;
+    right: 0;
+    float: right;
+    background-color: #FFF;
+    width: 40%;
+}
+
+.login-box * {
+    margin: 0 0 10px 10px;
+}
+
+
 .catalog {
-    margin: 30px 0 0 0;
+    position: absolute;
+    top: 150px;
+    right: 0px;
+    width: 40%
 }
 
 .panel {
     display: block;
-    width: 40%;
-    height: 100px;
+    width: 100%;
+    height: 120px;
     border: solid;
     border-width:thin;
     border-color: #777;
     background-color: #DDD;
+    margin: 0 0 5px 0;
+    color: #000;
+    text-decoration: none;
 }
 
 .panel:hover {
     background-color: transparent;
 }
 
+
+
 .panel p {
-    position: relative;
-    float: left;
-    padding: 0 20px 0 20px;
-    display: inline;
+    display: block;
+    height: 90px;
+    max-width: 60%;
+    margin: 0 0 5px 10px;
+    font-size: 10pt;
+}
+
+.panel h4 {
+    height: 10px;
+    margin: 5px 0 0 10px;
+    max-width: 60%;
+    font-size: 12pt;
+    font-style: bold;
 }
 
 .panel img {
-    height: 100%;;
+    position: relative;
+    height: 110px;
+    float: right;
+    margin: -120px 5px 5px 0;
 }
 
 .detail img {
