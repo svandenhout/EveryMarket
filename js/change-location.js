@@ -42,6 +42,7 @@ $(document).ready(function() {
     });
     
     function setElements() {
+        
         formattedAddress.html(user.address);
         latLng.html(user.latLng);
         

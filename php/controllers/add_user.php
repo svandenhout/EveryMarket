@@ -6,9 +6,7 @@ include_once "../models/user.class.php";
 
 $result = $user->addUser($_POST);
 
-if($result == user::DUPLICATE_ENTRY) {
-    print("duplicate entry");
-}else {
+if($result) {
     print("user added");
 }
 ?>

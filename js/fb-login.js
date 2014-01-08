@@ -39,7 +39,7 @@ $(window).ready(function() {
         ref.parentNode.insertBefore(js, ref);
     }(document));
 
-    // nlogin is called when a facebook user is logged in
+    // login is called when a facebook user is logged in
     // onlogin should be called every time index is opened
     function onLogin() {
         FB.api('/me', function (response) {
@@ -57,6 +57,8 @@ $(window).ready(function() {
                 $(".logged-in").show();
                 $(".location-link").html(user.address);
                 
+                // if the current page is index.html it will build a
+                // catalog
                 if(
                     window.location.pathname === "/" || 
                     window.location.pathname === "/index.html"
@@ -64,17 +66,20 @@ $(window).ready(function() {
                     buildCatalog();
                 }
                 
+                // if the current page is product.html it will build 
+                // a detail page of this product
                 if(window.location.pathname === "/product.html") {
                     buildDetail();
                 }
                 
-                // chat functionality is too big for the scope 
+                // chat functionality is too big for the scope of
+                // the project
                 // facebookChat(user.id);
             }else {
                 sessionStorage.setItem("user", JSON.stringify(user));
                 // post the new user to the database
                 user.postUserToDb(function() {
-                    window.location = "change-location.html";
+                    window.location = "/change-location.html";
                 });
             }         
         });

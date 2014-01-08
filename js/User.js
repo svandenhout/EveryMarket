@@ -102,8 +102,8 @@ User.prototype.updateLocation = function(callback) {
     
     var location = {
         latLng: JSON.stringify(this.latLng),
-        lat: this.latLng.nb,
-        lng: this.latLng.ob,
+        lat: this.latLng.lat(),
+        lng: this.latLng.lng(),
         address: this.address,
         id: this.id
     };

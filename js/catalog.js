@@ -20,18 +20,32 @@ function buildCatalog() {
     if(sessionStorage.getItem("user")) {
         var user = sessionStorage.getItem("user");
         user = JSON.parse(user);
-        var latLng = JSON.parse(user.latLng);
+        latLng = toLatLng(user.latLng);
     }
     
     // retrieve array with all the products available
     // might change the products being retrieved
-    var posting = $.post(url, {lat: latLng.nb, lng: latLng.ob});
+    var posting = $.post(url, {lat: latLng.lat(), lng: latLng.lng()});
     posting.done(function(result) {
+        console.log(result)
         var products = JSON.parse(result);
+        console.log(products);
         
         // ie 8 is not going to like this.
         // such a shame i wish i could use forEach more.
-        products.forEach(function(product) {            
+        products.forEach(function(product) {
+            
+            var latLng = toLatLng(product.latLng);
+            
+            // markers
+            new google.maps.Marker({
+                position: latLng,
+                map: map,
+                title: product.name,
+                // icon: "images/" + product.image
+            });
+            
+            // panels
             catalog.append(
                 "<a class='panel " + product.latLng + "'" +
                     "href='product.html?id=" + product.id + "'" +
@@ -45,11 +59,27 @@ function buildCatalog() {
         
         $(".panel").mouseover(function() {
             var classes = this.className.split(/\s+/);
-            var myLatLng = JSON.parse(classes[1])
-            var latLng = new google.maps.LatLng(myLatLng.nb, myLatLng.ob);
+            var latLng = toLatLng(classes[1]);
             
             map.panTo(latLng);
             map.set("zoom", 14);
+            
         });
     });   
+}
+
+// the latLng object i put in my database omits the lat() & lng() functions
+// thats problematic since google just changes the names of their keys every
+// now & then....
+function toLatLng(latLng) {
+    latLng = JSON.parse(latLng);
+    
+    var arr = [];
+    for(var key in latLng) {
+        var value = latLng[key];
+        arr.push(value);
+    }
+    latLng = new google.maps.LatLng(arr[0], arr[1]);
+    
+    return latLng;
 }
