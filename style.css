@@ -1,5 +1,8 @@
+
+
 body {
     font-family: sans-serif;
+    height: 100%;
 }
 
 #address-map {
@@ -25,36 +28,40 @@ body {
     right: 0;
     float: right;
     background-color: #FFF;
-    width: 40%;
+    width: 600px;
+}
+
+#add-product-form * {
+    position: relative;
+    margin 0 0 0 10px;
 }
 
 .login-box * {
     margin: 0 0 10px 10px;
 }
 
-
 .catalog {
     position: absolute;
+    overflow-y: scroll;
     top: 150px;
-    right: 0px;
-    width: 40%
+    right: 0;
+    width: 40%;
+    height: 80%;
 }
 
 .panel {
     display: block;
-    width: 100%;
-    height: 120px;
-    border: solid;
-    border-width:thin;
-    border-color: #777;
-    background-color: #DDD;
+    width: 90%;
+    height: 110px;
+    background-color: #FFF;
     margin: 0 0 5px 0;
+    padding: 10px 0 0 0;
     color: #000;
     text-decoration: none;
 }
 
 .panel:hover {
-    background-color: transparent;
+    opacity: 0.6;
 }
 
 
@@ -68,20 +75,39 @@ body {
 }
 
 .panel h4 {
-    height: 10px;
-    margin: 5px 0 0 10px;
+    
     max-width: 60%;
-    font-size: 12pt;
-    font-style: bold;
+    font-size: 15pt;
+    font-weight: bold;
+    margin: 0 0 0 10px;
 }
 
 .panel img {
     position: relative;
     height: 110px;
     float: right;
-    margin: -120px 5px 5px 0;
+    margin: -135px 5px 5px 0;
+}
+
+.detail {
+    border-top: solid;
+    margin: 150px 0 0 0;
 }
 
 .detail img {
     height: 250px;
+}
+
+.detail * {
+    margin: 10px 0 10px 15px; 
+}
+
+.detail .name {
+    font-size: 15pt;
+    font-weight: bold; 
+}
+
+.detail .description {
+    float: left;
+    width: 350px;
 }

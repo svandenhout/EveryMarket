@@ -16,21 +16,19 @@ function buildCatalog() {
     );
     
     var catalog = $(".catalog");
-    var url = "../php/controllers/retrieve_products.php"
+    catalog.height($(this).height() - 150); 
+    
+    var url = "../php/controllers/retrieve_products.php";
     if(sessionStorage.getItem("user")) {
-        var user = sessionStorage.getItem("user");
-        user = JSON.parse(user);
-        latLng = toLatLng(user.latLng);
+        var user = new User(JSON.parse(sessionStorage.getItem("user")));
     }
     
     // retrieve array with all the products available
     // might change the products being retrieved
-    var posting = $.post(url, {lat: latLng.lat(), lng: latLng.lng()});
+    var posting = $.post(url, {lat: user.latLng.lat(), lng: user.latLng.lng()});
     posting.done(function(result) {
-        console.log(result)
         var products = JSON.parse(result);
-        console.log(products);
-        
+        var panels = "";
         // ie 8 is not going to like this.
         // such a shame i wish i could use forEach more.
         products.forEach(function(product) {
@@ -45,17 +43,21 @@ function buildCatalog() {
                 // icon: "images/" + product.image
             });
             
-            // panels
-            catalog.append(
+            // panels, Jaml completely falls flat here :(
+            panels = panels +
                 "<a class='panel " + product.latLng + "'" +
-                    "href='product.html?id=" + product.id + "'" +
-                "</a>" +
+                    "href='product.html?id=" + product.id + "'>" +
+                
                 "<h4>" + product.name + "</h4><br>" +
                 "<p>" + product.description + "</p>" +
                 "<img src=images/" + product.image + " />" +
-                "</a>"
-            );
+                "</a>";
+            
         });
+        
+        
+        
+        catalog.html(panels);
         
         $(".panel").mouseover(function() {
             var classes = this.className.split(/\s+/);
@@ -65,7 +67,12 @@ function buildCatalog() {
             map.set("zoom", 14);
             
         });
-    });   
+    });
+    
+    // very ugly resize event
+    $( window ).resize(function() {
+        catalog.height($(this).height() - 150); 
+    });
 }
 
 // the latLng object i put in my database omits the lat() & lng() functions

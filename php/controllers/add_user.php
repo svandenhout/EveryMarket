@@ -6,7 +6,7 @@ include_once "../models/user.class.php";
 
 $result = $user->addUser($_POST);
 
-if($result) {
+if($result !== false) {
     print("user added");
 }
 ?>

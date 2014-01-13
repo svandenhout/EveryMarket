@@ -5,6 +5,7 @@ function buildDetail() {
     if(id) {
         var posting = $.post("../php/controllers/retrieve_product.php", {id: id});
         posting.done(function(response) {
+            console.log(response);
             response = JSON.parse(response);
             $(".name").html(response.name);
             $(".description").html(response.description);
@@ -13,11 +14,15 @@ function buildDetail() {
             $(".address");
             $(".address-map");
             
-            console.log(response);
             // checks wether the product is owned by the current user
             // when owned the user can delete the product
             if(user.id === response.fb_id) {
                 var deleteEntry = $(".delete-entry");
+                var editEntry = $(".edit-entry");
+                editEntry.show();
+                editEntry.attr(
+                    "href", "update-product.html?id=" + response.id
+                );
                 deleteEntry.show();
                 deleteEntry.click(function() {
                     var posting = $.post(
@@ -26,7 +31,6 @@ function buildDetail() {
                     );
                           
                     posting.done(function(response) { 
-                        console.log(response);
                         window.location = "/index.html";
                     });
                 });
@@ -58,7 +62,7 @@ function buildDetail() {
 
 
 /*
- * written by someone else, didn't bother to find out who
+ * written by someone else, stack overflow link =>
  * http://stackoverflow.com/questions/1403888/get-escaped-url-parameter
  */
 function getParameter(paramName) {

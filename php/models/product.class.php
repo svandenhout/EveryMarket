@@ -28,6 +28,19 @@ class Product {
         return $result;
     }
     
+    public function updateProduct($product, $fileName) {
+        $sql = 
+            "UPDATE products
+            SET name='" . $product["name"] . "',
+                description='" . $product["description"] . "',
+                image='" . $fileName . "'
+            WHERE id='" . $product["id"] . "'";
+        
+        $result = $this->dbQuery($sql);
+        
+        print($result);
+    }
+    
     // returns an array with all products
     // all products have their location
     public function getAllProducts() {
@@ -100,7 +113,8 @@ class Product {
                 products.description, 
                 products.image
             FROM users JOIN products 
-            WHERE products.id = " .$product_id;
+            WHERE products.user_id = users.fb_id AND
+            products.id = " .$product_id;
             
         $result = $this->dbQuery($sql);
         
@@ -141,7 +155,13 @@ class Product {
         $result = $this->mysqli->query($sql) or 
             trigger_error($this->mysqli->error."[$sql]");
         
-        return $result;
+        if($this->mysqli->affected_rows > 0) {
+            return $result;
+        }else {
+            return false;
+        }
+        
+        
     }
 }
 

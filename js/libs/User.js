@@ -2,6 +2,7 @@
  * User.js represents all the basic user functinality
  * that i want on the javascript side
  * TODO: make the class usable for other projects (more abstraction)
+ * i'll probably make it fit for node so i can use routing :)
  */
 
 // fb user is the response from the facebook login
@@ -32,7 +33,7 @@ User.prototype.setOldUser = function(user) {
         this.id = user.id;
     
     if(user.latLng !== undefined)
-        this.latLng = user.latLng;
+        this.latLng = this.toLatLng(user.latLng);
     
     if(user.address !== undefined)
         this.address = user.address;
@@ -95,6 +96,24 @@ User.prototype.getUserFromDb = function(callback) {
         that.address = res.address; 
         callback();
     });
+}
+
+// the latLng object i put in my database omits the lat() & lng() functions
+// thats problematic since google just changes the names of their keys every
+// now & then....
+User.prototype.toLatLng = function(latLng) {
+    if(typeof latLng !== "object") {
+        latLng = JSON.parse(latLng);
+    }
+    
+    var arr = [];
+    for(var key in latLng) {
+        var value = latLng[key];
+        arr.push(value);
+    }
+    latLng = new google.maps.LatLng(arr[0], arr[1]);
+    
+    return latLng;
 }
 
 User.prototype.updateLocation = function(callback) {

@@ -5,6 +5,5 @@ include_once "../models/user.class.php";
  */
 
 $result = $user->getUserById($_POST);
-
 print(json_encode($result));
 ?>

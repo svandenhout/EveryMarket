@@ -1,8 +1,8 @@
 $(document).ready(function() {
+    
     // Get some values from elements on the page:
     var form = $("#add-product-form"),
         userId = form.find("input[name='user_id']");
-        
     
     // retrieve the user from localstorage so we 
     // can send the user_id with the product

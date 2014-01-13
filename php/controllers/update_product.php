@@ -2,8 +2,7 @@
 include_once "../models/product.class.php";
 
 /*
- * this controller returns all the user info after an email & 
- * password check
+ * iuno
  */
 
 $uploads_dir = $home_dir . '/images';
@@ -13,7 +12,7 @@ if ($_FILES["image"]["error"] == UPLOAD_ERR_OK) {
     move_uploaded_file($tmp_name, "$uploads_dir/$name");
 }
 
-$result = $product->addProduct($_POST, $_FILES["image"]["name"]);
+$result = $product->updateProduct($_POST, $_FILES["image"]["name"]);
 
 if($result === false){
     print("<p> database problem " . $result . " </p>");
