@@ -52,8 +52,10 @@ $(window).ready(function() {
                     })
                 )
             });
-                
-            $("body").html(Jaml.render("update-product-form", product))
+                        
+            $(".update-product").html(
+                Jaml.render("update-product-form", product)
+            );
         });
     }else {
         console.log("something went wrong, no product id")

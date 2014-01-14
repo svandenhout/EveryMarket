@@ -19,7 +19,7 @@ $(document).ready(function() {
     });
     
     // render the new form into the current body (replacing old form)
-    $(document.body).html(Jaml.render("rendered-address-form"));
+    $(".confirm-location").html(Jaml.render("rendered-address-form"));
     
     var mapOptions = {
         zoom: 6,

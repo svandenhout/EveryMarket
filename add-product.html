@@ -12,16 +12,38 @@
         <script type="text/javascript" src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
     </head>
     <body>
-        <form id="add-product-form" action="/php/controllers/add_product.php" method="post" enctype="multipart/form-data">
-            <span>name: </span><br>
-            <input type="text" name="name"><br>
-            <span>description: </span><br>
-            <textarea cols="40" rows="20" name="description"></textarea><br>
-            <span>image: </span><br>
-            <input type="file" name="image"><br>
-            <input type="submit" name="submit"><input type="text" name="user_id" style="display: none;">
-            <div name="status"></div>
-        </form>
+        <div id="fb-root"></div>
+        <div class="header"></div>
+        <div class="login-box">
+            
+            <fb:login-button 
+                show-faces="true"
+                width="200px"
+                height="100px"
+                max-rows="1"
+                autologoutlink="true">
+            </fb:login-button>
+            
+            <div style="display: none;" class="logged-in">
+                <a  class="location-link" href="change-location.html"></a>
+                <a class="add-product" href="add-product.html">add product</a>
+            </div>
+        </div>
+        
+        <a href="index.html" class="back-btn"></a>
+        
+        <div class="container">
+            <form id="add-product-form" action="/php/controllers/add_product.php" method="post" enctype="multipart/form-data">
+                <span>name: </span><br>
+                <input type="text" name="name"><br>
+                <span>description: </span><br>
+                <textarea cols="40" rows="20" name="description"></textarea><br>
+                <span>image: </span><br>
+                <input type="file" name="image"><br>
+                <input type="submit" name="submit"><input type="text" name="user_id" style="display: none;">
+                <div name="status"></div>
+            </form>
+        </div>
     </body>
     <footer>
         <script type="text/javascript" src="js/add-product.js"></script>

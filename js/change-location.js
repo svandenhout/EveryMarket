@@ -19,6 +19,7 @@ $(document).ready(function() {
     
     addressForm.submit(function(event) {
         event.preventDefault();
+        $(".address-button").attr("disabled", true);
         geoCoder.geocode({ 'address': addressI.val()}, function(results, status) {
             
             user.setLocation(

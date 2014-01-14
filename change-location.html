@@ -11,15 +11,33 @@
         <script type="text/javascript" src="js/libs/jquery-1.10.2.min.js"></script>
     </head>
     <body>
-        <!-- Change location  -->
-        <p class="address-current"></p><br>
-        <form class="geocode-address-form">
-            <p class="change-address">what is your address?: </p>
-            <input type="text" class="address-input" class="change-address">
-            <input type="submit" class="address-button" class="change-address" value="check address">
-        </form>
+        <div id="fb-root"></div>
+        <div class="header"></div>
+        <div class="login-box">
+            
+            <fb:login-button 
+                show-faces="true"
+                width="200px"
+                height="100px"
+                max-rows="1"
+                autologoutlink="true">
+            </fb:login-button>
+            
+            <div style="display: none;" class="logged-in">
+                <a  class="location-link" href="change-location.html"></a>
+                <a class="add-product" href="add-product.html">add product</a>
+            </div>
+        </div>
         
-        
+        <a href="index.html" class="back-btn"></a>
+        <div class="container">
+            <p class="address-current"></p><br>
+            <form class="geocode-address-form">
+                <p class="change-address">what is your address?: </p>
+                <input type="text" class="address-input" class="change-address">
+                <input type="submit" class="address-button" class="change-address" value="check address">
+            </form>
+        </div>
     </body>
     <footer>
         <script type="text/javascript" src="js/libs/Jaml-all.js"></script>

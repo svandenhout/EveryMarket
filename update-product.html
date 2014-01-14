@@ -11,7 +11,26 @@
         <script type="text/javascript" src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
     </head>
     <body>
+        <div id="fb-root"></div>
+        <div class="header"></div>
+        <div class="login-box">
+            
+            <fb:login-button 
+                show-faces="true"
+                width="200px"
+                height="100px"
+                max-rows="1"
+                autologoutlink="true">
+            </fb:login-button>
+            
+            <div style="display: none;" class="logged-in">
+                <a  class="location-link" href="change-location.html"></a>
+                <a class="add-product" href="add-product.html">add product</a>
+            </div>
+        </div>
         
+        <a href="index.html" class="back-btn"></a>
+        <div class="update-product container"></div>
     </body>
     <footer>
         <script type="text/javascript" src="js/libs/Jaml-all.js"></script>
