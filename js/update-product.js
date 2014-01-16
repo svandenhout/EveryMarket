@@ -18,7 +18,7 @@ $(window).ready(function() {
                         method: "post",
                         enctype: "multipart/form-data"
                     },
-                    span("product name"),
+                    span("product name:"),
                     br(),
                     input({
                         name: "name",
@@ -26,7 +26,7 @@ $(window).ready(function() {
                         value: product.name
                     }),
                     br(),
-                    span("product description"),
+                    span("product description:"),
                     br(),
                     textarea({
                         name: "description",
@@ -36,7 +36,8 @@ $(window).ready(function() {
                         
                     }, product.description),
                     br(),
-                    span("image"),
+                    span("image:"),
+                    br(),
                     input({
                         name: "image", 
                         type: "file", 

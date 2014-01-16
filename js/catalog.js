@@ -4,6 +4,12 @@ function buildCatalog() {
      * the retrieved catalog is location based
      */
     
+    var catalog = $(".catalog"),
+        bigMap = $("#big-map");
+    
+    catalog.height($(this).height() - 150);
+    bigMap.height($(this).height() - 160)
+    
     // build the big map
     var mapOptions = {
         zoom: 8,
@@ -14,9 +20,6 @@ function buildCatalog() {
     var map = new google.maps.Map(
         document.getElementById("big-map"), mapOptions
     );
-    
-    var catalog = $(".catalog");
-    catalog.height($(this).height() - 150); 
     
     var url = "../php/controllers/retrieve_products.php";
     if(sessionStorage.getItem("user")) {
@@ -51,11 +54,8 @@ function buildCatalog() {
                 "<h4>" + product.name + "</h4><br>" +
                 "<p>" + product.description + "</p>" +
                 "<img src=images/" + product.image + " />" +
-                "</a>";
-            
+                "</a>"; 
         });
-        
-        
         
         catalog.html(panels);
         
@@ -71,7 +71,8 @@ function buildCatalog() {
     
     // very ugly resize event
     $( window ).resize(function() {
-        catalog.height($(this).height() - 150); 
+        catalog.height($(this).height() - 150);
+        bigMap.height($(this).height() - 160);
     });
 }
 

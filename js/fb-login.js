@@ -22,7 +22,9 @@ $(window).ready(function() {
         });
         
         // handles user logout
-        FB.Event.subscribe("auth.logout", function() {window.location.reload()});
+        FB.Event.subscribe("auth.logout", function() {
+            window.location.reload()
+        });
     };
 
     // Load the SDK asynchronously
