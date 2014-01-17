@@ -11,7 +11,27 @@ is location based. You can now truly eat local.
 
 The app is not a mobile endeavor for the simple reason that this is
 not person based. We don't need your location, we need the location
-of the delicious ingredients you're keeping etc. 
+of the delicious ingredients you're keeping. 
+
+Target group:
+
+This app will try to target a group of people who care about what
+they eat. These people take more time than others to eat responsible and
+fresh products. I believe this group consists of people who are pretty 
+much any age or gender, this is why I want to focus on people who are 
+between the age of 55 and 65. 
+
+Allmost retired:
+
+Often with a steady source of income they are at the time of their life 
+when they start working a little less. This is also the time when health
+problems come to the surface, with bad eating habits as their number 1 
+contributors.
+I believe health is often the prime reason to change eating habits (not
+the only one). In conslusion This target group has the will and the time 
+to eat responsible and fresh food the every market app will help them with
+it.
+
 
 Features
 --------
