@@ -39,7 +39,7 @@ $(window).ready(function() {
                     span("image:"),
                     br(),
                     input({
-                        name: "image", 
+                        name: "file", 
                         type: "file", 
                         value: product.image
                     }),
