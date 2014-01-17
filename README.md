@@ -31,6 +31,7 @@ when users can visit to buy: not using this anymore, might be good but very hard
 
 - intergrate the facebook messages into the app (might do later)
 - intergrate payment & shipping options
+- search
 
 Database structure
 ------------------
