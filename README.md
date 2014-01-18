@@ -27,10 +27,14 @@ Often with a steady source of income they are at the time of their life
 when they start working a little less. This is also the time when health
 problems come to the surface, with bad eating habits as their number 1 
 contributors.
-I believe health is often the prime reason to change eating habits (not
-the only one). In conslusion This target group has the will and the time 
-to eat responsible and fresh food the every market app will help them with
-it.
+The group has the time, income and reasons to start cooking food using
+fresh, honest and local products.
+Health is often the prime reason to change eating habits but not
+the only one. Influence from their children and media all help their  
+share. There are many reasons for these people to want to eat local. 
+EveryMarket puts the into direct contact with suppliers, it even gives
+them the possibility to become suppliers themselves. In the future 
+food will come from everywhere.
 
 
 Features
