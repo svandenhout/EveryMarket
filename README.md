@@ -1,5 +1,5 @@
-BoodSchappenRuilApp
-===================
+EveryMarket
+===========
 
 An application to query for ingredients in the neigbourhood,
 a user can register and put his ingredients online for others to see. 
